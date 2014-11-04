@@ -8,7 +8,17 @@ window.onload = function(){
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 	
+		if (str == str.toLowerCase())
+		{
+			document.writeln(str.toUpperCase());
+		}
+		
+		
+	
+	// document.writeln(str.toUpperCase());
+	// document.writeln(str.toLowerCase());
 
+	
 
 
 
