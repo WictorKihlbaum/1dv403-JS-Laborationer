@@ -8,24 +8,29 @@ window.onload = function(){
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 		
-		var n = "";
+		if (str.length > 0)
+		{
+			// Skapar tom textsträng för insparning av bokstäver.
+			var text = "";
 
-		for (var i = 0; i < str.length; i++) {
-			
+			for (var i = 0; i < str.length; i++) {
+				// Alla Unicodevärden från '65 - 90' och '196 - 214' blir versaler. 
+				if (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90 || str.charCodeAt(i) >= 196 && str.charCodeAt(i) <= 214)
+				{
+					text += str.charAt(i).toLowerCase().replace(/a/g, "#");
+				}
+				else // Alla unicodevärden utanför ovan intervaller blir gemener.
+				{
+					text += str.charAt(i).toUpperCase().replace(/A/g, "#");
+				}
+			};
 
-			if (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90)
-			{
-				n = n + str.charAt(i).toLowerCase().replace(/a/g, "#");
-			}
-			else
-			{
-				n = n + str.charAt(i).toUpperCase().replace(/A/g, "#");
-			}
-		};
-		
-		console.log(n);
-		return n;
-		
+			return text;
+		}
+		else // Felmeddelande om användaren inte matar in något.
+		{
+			return ("Du måste mata in något!");
+		}
 	};
 	// ------------------------------------------------------------------------------
 
