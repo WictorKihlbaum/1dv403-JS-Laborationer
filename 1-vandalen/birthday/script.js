@@ -6,8 +6,29 @@ window.onload = function(){
 	var birthday = function(date){
 		
 
+		var birthDay = new Date(date);
+		var today = new Date();
+		
+		// (birthDay.getTime(date) - today.getTime())/(1000*60);
 
-			// Din kod här.
+		// return today;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
