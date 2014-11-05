@@ -5,34 +5,24 @@ window.onload = function(){
 	
 	var birthday = function(date){
 		
-
+		// Skapar variabler för dagens datum samt födelsedatum.
 		var birthDay = new Date(date);
 		var today = new Date();
-		
-		// (birthDay.getTime(date) - today.getTime())/(1000*60);
 
-		// return today;
+		//if (birthDay < today)
+		{
+			// Ersätter födelseåret med aktuellt år.
+			birthDay.setFullYear(today.getFullYear());
+			// Om födelsedatumet passerat plussas ett år på.
+			if (today > birthDay)
+			{
+				birthDay.setFullYear(today.getFullYear() + 1);
+			}
+			// Avrundar ned och returnerar antalet återstående dagar.
+			return Math.floor((birthDay - today) / 86400000);
+		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		//return ("Fel!");
 	};
 	// ------------------------------------------------------------------------------
 
