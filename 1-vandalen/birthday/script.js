@@ -9,8 +9,8 @@ window.onload = function(){
 		var birthDay = new Date(date);
 		var today = new Date();
 
-		//if (birthDay < today)
-		{
+		// try (birthDay <= today)
+		// {
 			// Ersätter födelseåret med aktuellt år.
 			birthDay.setFullYear(today.getFullYear());
 			// Om födelsedatumet passerat plussas ett år på.
@@ -19,10 +19,19 @@ window.onload = function(){
 				birthDay.setFullYear(today.getFullYear() + 1);
 			}
 			// Avrundar ned och returnerar antalet återstående dagar.
-			 return Math.floor((birthDay - today) / 86400000);
+			 var daysUntilBirthday = Math.ceil((birthDay - today) / 86400000);
+
+			 if (daysUntilBirthday === 365)
+			 {
+			 	return 0;
+			 }
+
+			 return daysUntilBirthday;
 		}
-		
-		//return ("Fel!");
+		// catch(e)
+		// {
+			
+		// }
 	};
 	// ------------------------------------------------------------------------------
 
