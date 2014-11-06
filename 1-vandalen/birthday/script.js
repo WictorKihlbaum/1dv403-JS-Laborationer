@@ -9,8 +9,8 @@ window.onload = function(){
 		var birthDay = new Date(date);
 		var today = new Date();
 
-		// try (birthDay <= today)
-		// {
+		if (birthDay <= today)
+		{
 			// Ersätter födelseåret med aktuellt år.
 			birthDay.setFullYear(today.getFullYear());
 			// Om födelsedatumet passerat plussas ett år på.
@@ -28,10 +28,10 @@ window.onload = function(){
 
 			 return daysUntilBirthday;
 		}
-		// catch(e)
-		// {
-			
-		// }
+		else
+		{
+			alert("Du kan bara ange ett datum som passerat!");	
+		}
 	};
 	// ------------------------------------------------------------------------------
 
