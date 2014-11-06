@@ -33,13 +33,6 @@ window.onload = function(){
 		{
 			return[false, "Det hemliga talet är lägre!"];
 		}	
-
-		function clearThis(target){
-        if (target.value === false) {
-            target.value= "";
-        }
-    }
-
 	};
 	
 	// ------------------------------------------------------------------------------
