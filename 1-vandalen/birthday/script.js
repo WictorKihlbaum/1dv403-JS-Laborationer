@@ -19,9 +19,9 @@ window.onload = function(){
 				birthDay.setFullYear(today.getFullYear() + 1);
 			}
 			// Avrundar ned och returnerar antalet återstående dagar.
-			return Math.floor((birthDay - today) / 86400000);
+			 return Math.floor((birthDay - today) / 86400000);
 		}
-
+		
 		//return ("Fel!");
 	};
 	// ------------------------------------------------------------------------------
