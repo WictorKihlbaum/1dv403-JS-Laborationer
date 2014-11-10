@@ -18,7 +18,7 @@ window.onload = function(){
 			{
 				birthDay.setFullYear(today.getFullYear() + 1);
 			}
-			// Avrundar ned och returnerar antalet återstående dagar.
+			// Avrundar upp och returnerar antalet återstående dagar.
 			 var daysUntilBirthday = Math.ceil((birthDay - today) / 86400000);
 
 			 if (daysUntilBirthday === 365)

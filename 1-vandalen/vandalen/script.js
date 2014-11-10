@@ -26,7 +26,7 @@
 		// Hämtar ut högsta ålder.
 		var maxAge = Math.max.apply(Math, ages);
 
-		// Adderar variabelvärden till 'result'.
+		// Adderar variabelvärden till 'result'-objektet.
 		result.minAge = minAge;
 		result.maxAge = maxAge;
 		result.averageAge = averageAge;
@@ -34,7 +34,7 @@
 
 		return result;
 
-	} 
+	};
 
 	var data = [{name: "John Häggerud", age: 37}, {name: "Johan Leitet", age: 36}, {name: "Mats Loock", age: 46}];
 
