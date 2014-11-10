@@ -14,12 +14,12 @@ window.onload = function(){
 			var text = "";
 
 			for (var i = 0; i < str.length; i++) {
-				// Alla Unicodevärden från '65 - 90' och '196 - 214' blir versaler. 
+				// Alla Unicodevärden från '65 - 90' och '196 - 214' blir gemener. 
 				if (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90 || str.charCodeAt(i) >= 196 && str.charCodeAt(i) <= 214)
 				{
 					text += str.charAt(i).toLowerCase().replace(/a/g, "#");
 				}
-				else // Alla unicodevärden utanför ovan intervaller blir gemener.
+				else // Alla unicodevärden utanför ovan intervaller blir versaler.
 				{
 					text += str.charAt(i).toUpperCase().replace(/A/g, "#");
 				}
