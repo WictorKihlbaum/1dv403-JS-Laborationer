@@ -6,18 +6,16 @@ var MessageBoard = {
 
 	init:function(e)
 	{
-		var mess = new Message("Hej Hej", new Date());
+		/* var mess = new Message("Hej Hej", new Date());
 		alert(mess);
 
 		mess.setText("Hej igen");
-		alert(mess);
+		alert(mess); */
 
-
-		messages.push("wefd", "hej");
-		console.log(messages);
+		MessageBoard.messages.push("hej hej hej", "du", "ni");
+		console.log(MessageBoard.messages);
 	}
-
-
+	
 };
 
 window.onload = MessageBoard.init;
