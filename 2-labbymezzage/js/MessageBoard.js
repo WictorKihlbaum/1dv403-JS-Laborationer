@@ -4,7 +4,7 @@ var MessageBoard = {
 
 	messages: [],
 
-	init:function(e)
+	init:function()
 	{
 		/* var mess = new Message("Hej Hej", new Date());
 		alert(mess);

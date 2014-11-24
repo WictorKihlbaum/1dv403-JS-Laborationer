@@ -12,21 +12,23 @@ body					{
 
 header					{
 						width: 960px;
-						height: 120px;
-						background-color: #F1C40F;
+						height: 180px;
+						background-image: url("images/LMHeader.png");
 						}
 
 main 					{
 						width: 860px;
 						height: 400px;
+						margin-top: 30px;
 						padding: 50px;
-						background-color: #3498DB;
+						border: 2px solid #3498DB;
+						border-radius: 25px 25px;
 						}
 
 #messageContainer		{
 						width: 860px;
 						height: 400px;
-						background-color: #ECF0F1;
+						/*background-color: #ECF0F1;*/
 						}
 
 
