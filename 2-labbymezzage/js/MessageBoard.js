@@ -7,21 +7,33 @@ var MessageBoard = {
 	init:function()	{
 
 		var messageButton = document.getElementById("messageButton");
-		messageButton.addEventListener("click", sendMessage, false);
+		messageButton.addEventListener("click", MessageBoard.sendMessage, false);
 
-		function sendMessage() {
+		var userInput = document.getElementById("textMessage");
 
-			var userInput = document.getElementById("textMessage");
-			var userMessage = new Message(userInput.value, new Date());
+		userInput.addEventListener("keypress", function(e){
+			if(!e){ e = window.event; }
 
-				if (userInput.value != "")
-				{
-					MessageBoard.messages.push(userMessage);
-					MessageBoard.renderMessage(MessageBoard.messages.length - 1)
-					userInput.value = "";
+				if(e.keyCode == 13){
+					e.preventDefault();
+					MessageBoard.sendMessage();
 				}
-		}
+		});
 	},
+
+	sendMessage: function() {
+
+		var userInput = document.getElementById("textMessage");
+		var userMessage = new Message(userInput.value, new Date());
+
+		if (userInput.value != "")
+			{
+				MessageBoard.messages.push(userMessage);
+				MessageBoard.renderMessage(MessageBoard.messages.length - 1)
+				userInput.value = "";
+				MessageBoard.messageCounter();
+			}
+		},
 
 	renderMessages : function() {
 
@@ -81,7 +93,6 @@ var MessageBoard = {
 			MessageBoard.showTime(messageID);
 		}
 
-		MessageBoard.messageCounter();
 	},
 
 	removeMessage : function(messageID) {

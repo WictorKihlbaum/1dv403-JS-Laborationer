@@ -32,6 +32,7 @@ function Message(message, date) {
 		var second = Message.addZero(date.getSeconds());
 
 		return "Inlägget skapades den: " + " " + day + "/" + (month + 1) + " " + year + " klockan " + hour + " : " + minute + " : " + second;
+
 	}
 
 	Message.prototype.getHTMLText = function() {
