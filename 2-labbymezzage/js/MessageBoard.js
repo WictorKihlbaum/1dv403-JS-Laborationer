@@ -12,12 +12,13 @@ var MessageBoard = {
 		var userInput = document.getElementById("textMessage");
 
 		userInput.addEventListener("keypress", function(e){
-			if(!e){ e = window.event; }
+			if (!e){ e = window.event; }
 
-				if(e.keyCode == 13){
-					e.preventDefault();
-					MessageBoard.sendMessage();
+				if (e.keyCode == 13 && !e.shiftKey) {
+					 e.preventDefault();
+					 MessageBoard.sendMessage();
 				}
+
 		});
 	},
 
@@ -81,12 +82,16 @@ var MessageBoard = {
 		removeMessageImg.setAttribute("src", "js/images/removeMessage.png");
 		removeMessageImg.alt = "Show time";
 
-		messageText.innerHTML = MessageBoard.messages[messageID].getText();
+		messageText.innerHTML = MessageBoard.messages[messageID].getHTMLText();
 		messageTime.innerHTML = MessageBoard.messages[messageID].getDateText();
 
 		removeMessage.onclick = function() {
-			MessageBoard.removeMessage(messageID);
-			MessageBoard.messageCounter();
+
+			if (confirm("Är du säker på att du vill radera meddelandet?"))
+			{
+				MessageBoard.removeMessage(messageID);
+				MessageBoard.messageCounter();
+			}
 		}
 
 		showTime.onclick = function() {
