@@ -1,47 +1,117 @@
-body					{
-						margin: 0;
-						padding: 0;
-						}
+body												{
+														margin: 0;
+														padding: 0;
+														}
 
-#container				{
-						width: 960px;
-						height: auto;
-						margin: 0 auto;
-						margin-top: 20px;
-						}
+#container									{
+														width: 960px;
+														height: auto;
+														margin: 0 auto;
+														margin-top: 20px;
+														}
 
-header					{
-						width: 960px;
-						height: 180px;
-						background-image: url("images/LMHeader.png");
-						}
+header											{
+														width: 960px;
+														height: 180px;
+														background-image: url("images/LMHeader.png");
+														}
 
-main 					{
-						width: 860px;
-						height: 400px;
-						margin-top: 30px;
-						padding: 50px;
-						border: 2px solid #3498DB;
-						border-radius: 25px 25px;
-						}
+main 												{
+														width: 960px;
+														height: auto;
+														margin-top: 30px;
+														margin-bottom: 25px;
+														border: 2px solid #3498DB;
+														border-radius: 25px 25px;
+														}
 
-#messageContainer		{
-						width: 860px;
-						height: 400px;
-						/*background-color: #ECF0F1;*/
-						}
-
-
+#messageContainer 					{
+														display: block;
+					    							margin: 0 auto;
+					    							margin-top: 50px;
+														width: 502px;
+														height: auto;
+														}
 
 #messageContainer textarea	{
-							width: 500px;
-							height: 300px;
-							padding: 0;
-							margin-left: 175px;
-							margin-top: 50px;
-							}
+														padding: 0;
+														width: 500px;
+														height: 300px;
+														font-size: 18px;
+														border: 1px solid #3498DB;
+														resize: none;
+														}
 
-#messageContainer button 	{
-							margin-left: 547px;
-							}
-						
+#messageContainer button 		{
+														display: block;
+							    					margin: 0 auto;
+							    					padding: 0;
+														width: 502px;
+														height: 50px;
+														border: 0;
+														font: 14px arial;
+														color: #FFF;
+														background-color: #3498DB;
+														}
+
+#messageContainer
+button:hover								{
+														background-color: #2980b9;
+														}
+
+#messageCounter							{
+														margin-top: 30px;
+														text-align: right;
+														font: 16px arial;
+														color: #3498DB;
+														}
+
+#sentMessages								{
+														margin-bottom: 50px;
+														padding: 5px;
+														width: 490px;
+														height: 280px;
+														border: 1px solid #3498DB;
+														overflow: scroll;
+														overflow-x: hidden;
+														}
+
+.messageDiv									{
+														padding: 1px 15px 1px 15px;
+														margin-top: 5px;
+														background-color: #2ECC71;
+														width: auto;
+														height: auto;
+														border-radius: 10px 10px;
+														font: 12px arial;
+														color: #FFF;
+														position: relative;
+														}
+
+.messageDiv p            		{
+														word-wrap: break-word;
+														width: 370px;
+														font: 16px arial;
+														}
+
+.messageDiv #messageTime		{
+														font: 12px arial;
+														}
+
+.buttonDiv	 			 					{
+														position: absolute;
+														top: 10px;
+														right: 10px;
+														float: right;
+														}
+
+.removeMessageImg						{
+														width: 25px;
+														height: 25px;
+														margin-left: 10px;
+														}
+
+.showTimeImg								{
+														width: 25px;
+														height: 25px;
+														}
