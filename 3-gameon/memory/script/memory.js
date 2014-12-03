@@ -9,10 +9,10 @@ var Memory = {
 		var randomArray = RandomGenerator.getPictureArray(rows, cols);
 		console.log(randomArray);
 
-		Memory.createTable(rows, cols);
+		Memory.createTable(rows, cols, randomArray);
 	},
 
-	createTable : function(rows, cols) {
+	createTable : function(rows, cols, randomArray) {
 
 		var memoryDiv = document.getElementById("memoryDiv");
 
@@ -33,8 +33,7 @@ var Memory = {
 
 				var cellImgLink = document.createElement("a");
 					cellImgLink.href = "#";
-					cellImgLink.addEventListener("click", Memory.showImg, false);
-
+					
 				cellImgLink.appendChild(cellImg);
 				cell.appendChild(cellImgLink);
 				row.appendChild(cell);
@@ -46,11 +45,21 @@ var Memory = {
 		memoryTable.appendChild(tableBody);
 		memoryDiv.appendChild(memoryTable);
 
-		
+		var aValues = document.getElementsByTagName("a");
+
+		for(var i = 0; i < randomArray.length; i += 1){
+			
+			aValues[i].rel = randomArray[i];
+		}
+
+		for(var i = 0; i < aValues.length; i += 1){
+			aValues[i].addEventListener("click", Memory.showImg, false);
+		}
 	},
 
-	showImg : function() {
-		alert("hej");
+	showImg : function(e) {
+		e.preventDefault();
+		console.log(this.getAttribute("rel"));
 	},
 
 };
