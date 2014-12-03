@@ -15,31 +15,30 @@ var Memory = {
 
 	createTable : function(rows, cols) {
 
-		var main = document.getElementsByTagName("main")[0];
+		var memoryDiv = document.getElementById("memoryDiv");
 
-		var table = document.createElement("table");
+		var memoryTable = document.createElement("table");
 		var tableBody = document.createElement("tbody");
 
-		for (var i = 0; i < rows; i++) {
+		for (var r = 0; r < rows; r++) {
 
 			var row = document.createElement("tr");
 
-			for (var j = 0; j < cols; j++) {
+			for (var c = 0; c < cols; c++) {
 
 				var cell = document.createElement("td");
-				var cellText = document.createTextNode("cell in row "+i+", column "+j);
-
-				cell.appendChild(cellText);
+				var cellImg = document.createElement("img");
+				cellImg.setAttribute("src", "pics/0.png");
+				
+				cell.appendChild(cellImg);
 				row.appendChild(cell);
 			}
 
 			tableBody.appendChild(row);
 		}
 
-		table.appendChild(tableBody);
-		main.appendChild(table);
-		table.setAttribute("border", "2");
-
+		memoryTable.appendChild(tableBody);
+		memoryDiv.appendChild(memoryTable);
 	},
 
 };

@@ -3,6 +3,7 @@ body			{
 				padding: 0;
 				}
 
+
 #container		{
 				margin: 0 auto;
 				width: 960px;
@@ -22,3 +23,21 @@ header			{
 header h1		{
 				margin: 0;
 				}
+
+#memoryDiv		{
+				margin: 0 auto;
+				margin-top: 50px;
+				width: 76px;
+				height: auto;
+				background-color: #FFF;
+				}
+
+#memoryDiv table	{
+					border: 1px solid;
+					}
+
+#memoryDiv table td	{
+					padding: 5px;
+					margin: 0;
+					}
+
