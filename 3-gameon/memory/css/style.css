@@ -1,0 +1,24 @@
+body			{
+				margin: 0;
+				padding: 0;
+				}
+
+#container		{
+				margin: 0 auto;
+				width: 960px;
+				height: 600px;
+				margin-top: 20px;
+				background-color: #CCC;
+				}
+
+
+header			{
+				width: 960px;
+				height: 100px;
+				text-align: center;
+				background-color: #999;
+				}
+
+header h1		{
+				margin: 0;
+				}
