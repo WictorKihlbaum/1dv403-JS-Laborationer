@@ -2,9 +2,11 @@
 
 var Memory = {
 
+	memoryArray: [],
+
 	init:function()	{
 
-		alert("Hej");
+		
 
 	},
 
