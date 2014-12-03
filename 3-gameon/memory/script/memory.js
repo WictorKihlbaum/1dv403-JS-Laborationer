@@ -26,10 +26,17 @@ var Memory = {
 			for (var c = 0; c < cols; c++) {
 
 				var cell = document.createElement("td");
+
 				var cellImg = document.createElement("img");
-				cellImg.setAttribute("src", "pics/0.png");
-				
-				cell.appendChild(cellImg);
+					cellImg.setAttribute("src", "pics/0.png");
+					cellImg.alt = "Show hidden image";
+
+				var cellImgLink = document.createElement("a");
+					cellImgLink.href = "#";
+					cellImgLink.addEventListener("click", Memory.showImg, false);
+
+				cellImgLink.appendChild(cellImg);
+				cell.appendChild(cellImgLink);
 				row.appendChild(cell);
 			}
 
@@ -38,6 +45,12 @@ var Memory = {
 
 		memoryTable.appendChild(tableBody);
 		memoryDiv.appendChild(memoryTable);
+
+		
+	},
+
+	showImg : function() {
+		alert("hej");
 	},
 
 };
