@@ -6,7 +6,13 @@ var Memory = {
 
 	init:function()	{
 
-		
+		var rows = 4;
+		var cols = 4;
+
+		var random = RandomGenerator.getPictureArray(rows, cols);
+
+		console.log(random);
+
 
 	},
 
