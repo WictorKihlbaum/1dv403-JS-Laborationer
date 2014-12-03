@@ -25,19 +25,18 @@ header h1		{
 				}
 
 #memoryDiv		{
+				margin: 50px;
+				}
+
+#memoryDiv 
+table			{
 				margin: 0 auto;
-				margin-top: 50px;
-				width: 76px;
-				height: auto;
+				border: 1px solid;
 				background-color: #FFF;
 				}
 
-#memoryDiv table	{
-					border: 1px solid;
-					}
-
-#memoryDiv table td	{
-					padding: 5px;
-					margin: 0;
-					}
+#memoryDiv 
+table td		{
+				padding: 5px;
+				}
 
