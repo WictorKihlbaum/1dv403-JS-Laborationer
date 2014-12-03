@@ -1,3 +1,13 @@
 "use strict";
 
-var Memory = {};
+var Memory = {
+
+	init:function()	{
+
+		alert("Hej");
+
+	},
+
+};
+
+window.onload = Memory.init;
