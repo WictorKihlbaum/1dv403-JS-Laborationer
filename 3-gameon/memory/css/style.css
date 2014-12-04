@@ -16,12 +16,15 @@ body			{
 header			{
 				width: 960px;
 				height: 100px;
+				font: 20px arial;
+				color: #555;
 				text-align: center;
 				background-color: #999;
 				}
 
 header h1		{
 				margin: 0;
+				padding-top: 30px;
 				}
 
 #memoryDiv		{
