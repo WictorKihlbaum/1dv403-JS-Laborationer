@@ -2,6 +2,8 @@
 
 var Memory = {
 
+	pairCompare: [],
+
 	init:function()	{
 
 		var rows = 4;
@@ -49,10 +51,7 @@ var Memory = {
 
 		for (var i = 0; i < randomArray.length; i += 1) {
 			
-			aValues[i].rel = randomArray[i];
-		}
-
-		for (var i = 0; i < aValues.length; i += 1) {
+			aValues[i].setAttribute("rel", randomArray[i]);
 			aValues[i].addEventListener("click", Memory.whenClick, false);
 		}
 	},
@@ -60,10 +59,33 @@ var Memory = {
 	whenClick : function(e) {
 
 		e.preventDefault();
-		console.log(this);
 		var aTag = this;
 		var rel = aTag.getAttribute("rel");
+
 		aTag.firstChild.setAttribute("src", "pics/" + rel + ".png");
+		Memory.pairCompare.push(aTag);
+		console.log(Memory.pairCompare);
+
+
+		if (Memory.pairCompare.length === 2) {
+
+			if (Memory.pairCompare[0].getAttribute("rel") === Memory.pairCompare[1].getAttribute("rel")) {
+
+				Memory.pairCompare = [];
+			}
+			else
+			{
+				setTimeout(function () {
+					for (var i = 0; i < Memory.pairCompare.length; i += 1) {
+						Memory.pairCompare[i].firstChild.setAttribute("src", "pics/0.png");
+					}
+					
+					Memory.pairCompare = [];
+				}, 1000)
+				
+			}
+				
+		}
 	},
 
 };
