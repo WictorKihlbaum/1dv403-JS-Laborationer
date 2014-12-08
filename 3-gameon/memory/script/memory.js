@@ -64,8 +64,8 @@ var Memory = {
 
 		aTag.firstChild.setAttribute("src", "pics/" + rel + ".png");
 		Memory.pairCompare.push(aTag);
-		console.log(Memory.pairCompare);
 
+		console.log(Memory.pairCompare);
 
 		if (Memory.pairCompare.length === 2) {
 
@@ -76,15 +76,16 @@ var Memory = {
 			else
 			{
 				setTimeout(function () {
-					for (var i = 0; i < Memory.pairCompare.length; i += 1) {
+
+					for (var i = 0; i < Memory.pairCompare.length; i += 1) {		
+						
 						Memory.pairCompare[i].firstChild.setAttribute("src", "pics/0.png");
 					}
-					
+
 					Memory.pairCompare = [];
 				}, 1000)
 				
-			}
-				
+			}	
 		}
 	},
 
