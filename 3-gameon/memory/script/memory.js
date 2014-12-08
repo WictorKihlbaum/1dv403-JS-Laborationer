@@ -3,7 +3,7 @@
 var Memory = {
 
 	pairCompare: [],
-	clickCount: 0,
+	clickCounter: 0,
 
 	init:function()	{
 
@@ -59,32 +59,29 @@ var Memory = {
 
 	whenClick : function(e) {
 		
-		if (Memory.clickCount < 2) {
+		if (Memory.clickCounter < 2) {
 
 			var aTag = this;
-			console.log(this);
 			var rel = aTag.getAttribute("rel");
 
 			aTag.firstChild.setAttribute("src", "pics/" + rel + ".png");
 			Memory.pairCompare.push(aTag);
 		}
 
-		Memory.clickCount++;
-		console.log(Memory.clickCount);
-		console.log(Memory.pairCompare);
+		Memory.clickCounter += 1;
 
-		if (Memory.pairCompare.length === 2 && Memory.clickCount === 2) {
+		if (Memory.pairCompare.length === 2 && Memory.clickCounter === 2) {
 
-			Memory.checkMatch();
+			Memory.checkPair();
 		}
 	},
 
-	checkMatch : function() {
+	checkPair : function() {
 
-		if (Memory.pairCompare[0].getAttribute("rel") === Memory.pairCompare[1].getAttribute("rel")) {
+		if (Memory.pairCompare[0].rel === Memory.pairCompare[1].rel) {
 						
 			Memory.pairCompare = [];
-			Memory.clickCount = 0;
+			Memory.clickCounter = 0;
 		}
 		else 
 		{
@@ -95,10 +92,8 @@ var Memory = {
 					Memory.pairCompare[i].firstChild.src = "pics/0.png";
 				}
 
-				console.log(Memory.pairCompare);
 				Memory.pairCompare = [];
-				Memory.clickCount = 0;
-				console.log(Memory.pairCompare);
+				Memory.clickCounter = 0;
 			}, 1000);
 		}
 	},
