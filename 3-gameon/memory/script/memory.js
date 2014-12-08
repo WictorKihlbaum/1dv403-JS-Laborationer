@@ -3,6 +3,7 @@
 var Memory = {
 
 	pairCompare: [],
+	clickCount: 0,
 
 	init:function()	{
 
@@ -57,35 +58,48 @@ var Memory = {
 	},
 
 	whenClick : function(e) {
+		
+		if (Memory.clickCount < 2) {
 
-		e.preventDefault();
-		var aTag = this;
-		var rel = aTag.getAttribute("rel");
+			var aTag = this;
+			console.log(this);
+			var rel = aTag.getAttribute("rel");
 
-		aTag.firstChild.setAttribute("src", "pics/" + rel + ".png");
-		Memory.pairCompare.push(aTag);
+			aTag.firstChild.setAttribute("src", "pics/" + rel + ".png");
+			Memory.pairCompare.push(aTag);
+		}
 
+		Memory.clickCount++;
+		console.log(Memory.clickCount);
 		console.log(Memory.pairCompare);
 
-		if (Memory.pairCompare.length === 2) {
+		if (Memory.pairCompare.length === 2 && Memory.clickCount === 2) {
 
-			if (Memory.pairCompare[0].getAttribute("rel") === Memory.pairCompare[1].getAttribute("rel")) {
+			Memory.checkMatch();
+		}
+	},
 
-				Memory.pairCompare = [];
-			}
-			else
-			{
-				setTimeout(function () {
+	checkMatch : function() {
 
-					for (var i = 0; i < Memory.pairCompare.length; i += 1) {		
+		if (Memory.pairCompare[0].getAttribute("rel") === Memory.pairCompare[1].getAttribute("rel")) {
 						
-						Memory.pairCompare[i].firstChild.setAttribute("src", "pics/0.png");
-					}
+			Memory.pairCompare = [];
+			Memory.clickCount = 0;
+		}
+		else 
+		{
+			setTimeout(function () {
 
-					Memory.pairCompare = [];
-				}, 1000)
-				
-			}	
+				for (var i = 0; i < Memory.pairCompare.length; i += 1) {		
+					
+					Memory.pairCompare[i].firstChild.src = "pics/0.png";
+				}
+
+				console.log(Memory.pairCompare);
+				Memory.pairCompare = [];
+				Memory.clickCount = 0;
+				console.log(Memory.pairCompare);
+			}, 1000);
 		}
 	},
 
