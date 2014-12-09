@@ -20,7 +20,7 @@ var Memory = {
 		Memory.divideValues(randomArray);
 	},
 
-	createTable : function(rows, cols, randomArray) {
+	createTable : function(rows, cols) {
 
 		var memoryDiv = document.getElementById("memoryDiv");
 		var memoryTable = document.createElement("table");
@@ -63,6 +63,7 @@ var Memory = {
 	},
 
 	whenClick : function(e) {
+		
 		e.preventDefault();
 		
 		if (Memory.clickCounter < 2) {
@@ -70,17 +71,16 @@ var Memory = {
 			var tileValue = this;
 			var rel = tileValue.rel;
 
-			if(!tileValue.hasAttribute("type", "#")){
-
+				
+			if(!tileValue.hasAttribute("type", "#")) {
+				
+				Memory.clickCounter += 1;
 				tileValue.firstChild.setAttribute("src", "pics/" + rel + ".png");
 				tileValue.setAttribute("type", "#");
+	
 				Memory.pairCompare.push(tileValue);
-				Memory.clickCounter += 1;
 			}
 		}
-
-		
-		console.log(Memory.clickCounter);
 
 		if (Memory.pairCompare.length === 2 && Memory.clickCounter === 2) {
 
@@ -94,27 +94,27 @@ var Memory = {
 	},
 
 	checkPair : function() {
-
-		if (Memory.pairCompare[0].rel === Memory.pairCompare[1].rel) {
-						
-			Memory.pairCompare = [];
-			Memory.clickCounter = 0;
-			Memory.amountOfGuesses += 1;
+		
+		if (Memory.pairCompare[0].rel === Memory.pairCompare[1].rel) {					
+				
 			Memory.matchedPairs += 1;
+			Memory.amountOfGuesses += 1;
+			Memory.clickCounter = 0;
+			Memory.pairCompare = [];
 		}
-		else 
+		else
 		{
 			setTimeout(function () {
 
-				for (var i = 0; i < Memory.pairCompare.length; i += 1) {		
-					
-					Memory.pairCompare[i].firstChild.src = "pics/0.png";
-					Memory.pairCompare[i].removeAttribute("type");
-				}
+			for (var i = 0; i < Memory.pairCompare.length; i += 1) {		
+						
+			Memory.pairCompare[i].firstChild.src = "pics/0.png";
+			Memory.pairCompare[i].removeAttribute("type");
+			}
 
-				Memory.pairCompare = [];
-				Memory.clickCounter = 0;
-				Memory.amountOfGuesses += 1;
+			Memory.amountOfGuesses += 1;
+			Memory.clickCounter = 0;
+			Memory.pairCompare = [];
 			}, 1000);
 		}
 	},
