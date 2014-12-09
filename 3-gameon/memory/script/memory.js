@@ -4,12 +4,17 @@ var Memory = {
 
 	pairCompare: [],
 	clickCounter: 0,
+	amountOfGuesses: 0,
+	matchedPairs: 0,
+	maxPairs: 0,
 
 	init : function() {
 
 		var rows = 4;
 		var cols = 4;
 		var randomArray = RandomGenerator.getPictureArray(rows, cols);
+
+		Memory.maxPairs = (rows * cols) / 2;
 
 		Memory.createTable(rows, cols, randomArray);
 		Memory.divideValues(randomArray);
@@ -46,7 +51,7 @@ var Memory = {
 		memoryDiv.appendChild(memoryTable);
 	},
 
-	divideValues : function(randomArray) {
+	divideValues : function(randomArray, rows, cols) {
 
 		var aValues = document.getElementsByTagName("a");
 
@@ -58,21 +63,33 @@ var Memory = {
 	},
 
 	whenClick : function(e) {
+		e.preventDefault();
 		
 		if (Memory.clickCounter < 2) {
 
-			var aTag = this;
-			var rel = aTag.getAttribute("rel");
+			var tileValue = this;
+			var rel = tileValue.rel;
 
-			aTag.firstChild.setAttribute("src", "pics/" + rel + ".png");
-			Memory.pairCompare.push(aTag);
+			if(!tileValue.hasAttribute("type", "#")){
+
+				tileValue.firstChild.setAttribute("src", "pics/" + rel + ".png");
+				tileValue.setAttribute("type", "#");
+				Memory.pairCompare.push(tileValue);
+				Memory.clickCounter += 1;
+			}
 		}
 
-		Memory.clickCounter += 1;
+		
+		console.log(Memory.clickCounter);
 
 		if (Memory.pairCompare.length === 2 && Memory.clickCounter === 2) {
 
 			Memory.checkPair();
+		}
+
+		if (Memory.matchedPairs === Memory.maxPairs) {
+
+			document.getElementById("result").innerHTML = "Grattis, du vann! Det tog " + Memory.amountOfGuesses + " gissningar";	
 		}
 	},
 
@@ -82,6 +99,8 @@ var Memory = {
 						
 			Memory.pairCompare = [];
 			Memory.clickCounter = 0;
+			Memory.amountOfGuesses += 1;
+			Memory.matchedPairs += 1;
 		}
 		else 
 		{
@@ -90,10 +109,12 @@ var Memory = {
 				for (var i = 0; i < Memory.pairCompare.length; i += 1) {		
 					
 					Memory.pairCompare[i].firstChild.src = "pics/0.png";
+					Memory.pairCompare[i].removeAttribute("type");
 				}
 
 				Memory.pairCompare = [];
 				Memory.clickCounter = 0;
+				Memory.amountOfGuesses += 1;
 			}, 1000);
 		}
 	},

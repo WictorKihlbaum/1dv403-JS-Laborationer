@@ -22,13 +22,13 @@ body			{
 header			{
 				width: 960px;
 				height: 150px;
-				padding-top: 3px;
+				padding-top: 9px;
 				}
 
 header h1		{
 				margin: 0;
 				text-align: center;
-				font-size: 144px;
+				font-size: 132px;
 				font-family: 'triforce', arial;
 				color: #D44545;
 				}
@@ -47,5 +47,15 @@ table			{
 #memoryDiv 
 table td		{
 				padding: 5px;
+				}
+
+#result			{
+				text-align: center;
+				font-size: 32px;
+				font-family: 'triforce', arial;
+				color: #27AE60;
+				display: block;
+				margin: 0 auto;
+				width: 350px;
 				}
 
