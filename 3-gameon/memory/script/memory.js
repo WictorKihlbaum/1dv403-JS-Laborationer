@@ -5,7 +5,7 @@ var Memory = {
 	pairCompare: [],
 	clickCounter: 0,
 
-	init:function()	{
+	init : function() {
 
 		var rows = 4;
 		var cols = 4;
