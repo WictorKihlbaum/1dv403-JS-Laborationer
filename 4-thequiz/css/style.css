@@ -1,0 +1,44 @@
+body 		{
+			margin: 0;
+			padding: 0;
+			}
+
+#container			{
+					width: 960px;
+					height: auto;
+					margin: 0 auto;
+					background-color: #ECF0F1;
+					}
+
+#quizDiv			{
+					margin: 0 auto;
+					padding: 50px;
+					display: block;
+					width: 400px;
+					height: auto;
+					background-color: #CCC;
+					}
+
+#quizDiv 
+header				{
+					margin: 0;
+					font: 18px verdana;
+					color: #3498DB;
+					text-align: center;
+					}
+
+#getButton,
+#answerArea,
+#sendButton 		{
+					margin: 0 auto;
+					display: block;
+					}
+
+#qfield				{
+					text-align: center;
+					}
+
+#answerArea 		{
+					width: 200px;
+					height: 30px;
+					}
