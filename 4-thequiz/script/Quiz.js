@@ -3,6 +3,7 @@
 var Quiz = {
 
 	nextURL: "http://vhost3.lnu.se:20080/question/1",
+	response: {},
 
 	init: function() {
 		Quiz.getQuestion();
@@ -17,10 +18,11 @@ var Quiz = {
 
 			if (xhr.readyState === 4 && xhr.status === 200) {
 
-				var question = JSON.parse(xhr.responseText);
-				document.getElementById("questionField").innerHTML = question.question;
-				console.log(question);
-				Quiz.nextURL = question.nextURL;
+				Quiz.response = JSON.parse(xhr.responseText);
+
+				document.getElementById("questionField").innerHTML = Quiz.response.question;
+				Quiz.nextURL = Quiz.response.nextURL;
+				console.log(Quiz.response);
 			}
 			else {
 				console.log("Läsfel! " + xhr.status);
@@ -32,7 +34,7 @@ var Quiz = {
 	},
 
 	sendAnswer: function() {
-		console.log("hej");
+
 		var userAnswer = document.getElementById("answerField").value;
 		var xhr = new XMLHttpRequest();
 
@@ -41,14 +43,21 @@ var Quiz = {
 			if (xhr.readyState === 4) {
 
 				if (xhr.status === 200) {
-					var answer = JSON.parse(xhr.responseText);
-					console.log(xhr.responseText);
-					Quiz.nextURL = answer.nextURL;
-					Quiz.getQuestion();
+
+					if ("nextURL" in Quiz.response) {
+
+						Quiz.response = JSON.parse(xhr.responseText);
+						Quiz.nextURL = Quiz.response.nextURL;
+						Quiz.correctAnswer();
+
+						setTimeout(function() {
+							Quiz.getQuestion();
+							console.log(xhr.responseText);
+						}, 1000);
+					}
 				}	
 				else {
-					var wrongAnswer = "Fel svar! Försök igen.";
-					document.getElementById("questionField").innerHTML = wrongAnswer;
+					Quiz.wrongAnswer();
 				}
 			}
 			else {
@@ -56,7 +65,7 @@ var Quiz = {
 			}
 		};
 
-		xhr.open("POST", Quiz.nextURL, true);
+		xhr.open("POST", Quiz.response.nextURL, true);
 		xhr.setRequestHeader("content-Type", "application/json");
 
 		var answer = {
@@ -65,6 +74,22 @@ var Quiz = {
 
 		xhr.send(JSON.stringify(answer));
 	},
+
+	correctAnswer: function() {
+
+		var correctAnswer = "Rätt svar!";	
+		document.getElementById("questionField").innerHTML = correctAnswer;	
+	},
+
+	wrongAnswer: function() {
+
+		var wrongAnswer = "Fel svar! Försök igen.";
+		document.getElementById("questionField").innerHTML = wrongAnswer;
+		
+		setTimeout(function() {
+			document.getElementById("questionField").innerHTML = Quiz.response.question;			
+		}, 1000);
+	}
 
 };
 
