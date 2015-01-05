@@ -1,7 +1,7 @@
-body 		{
-			margin: 0;
-			padding: 0;
-			}
+body 				{
+					margin: 0;
+					padding: 0;
+					}
 
 #container			{
 					width: 960px;
@@ -27,18 +27,7 @@ header				{
 					text-align: center;
 					}
 
-#getButton,
-#answerArea,
-#sendButton 		{
-					margin: 0 auto;
-					display: block;
-					}
-
-#qfield				{
-					text-align: center;
-					}
-
-#answerArea 		{
+#answerField 		{
 					width: 200px;
-					height: 30px;
+					height: 40px;
 					}
