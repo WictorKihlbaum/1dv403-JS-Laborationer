@@ -4,6 +4,8 @@ var Quiz = {
 
 	nextURL: "http://vhost3.lnu.se:20080/question/1",
 	response: {},
+	totalGuesses: [],
+	guesses: 0,
 
 	init: function() {
 		Quiz.getQuestion();
@@ -35,8 +37,12 @@ var Quiz = {
 
 	sendAnswer: function() {
 
+		Quiz.guesses += 1;
+
 		var userAnswer = document.getElementById("answerField").value;
 		var xhr = new XMLHttpRequest();
+
+		Quiz.clearAnswerField();
 
 		xhr.onreadystatechange = function() {
 
@@ -44,9 +50,13 @@ var Quiz = {
 
 				if (xhr.status === 200) {
 
-					if ("nextURL" in Quiz.response) {
+					Quiz.response = JSON.parse(xhr.responseText);
 
-						Quiz.response = JSON.parse(xhr.responseText);
+					Quiz.totalGuesses.push(Quiz.guesses);
+					Quiz.guesses = 0;
+
+					if ("nextURL" in Quiz.response) {
+						
 						Quiz.nextURL = Quiz.response.nextURL;
 						Quiz.correctAnswer();
 
@@ -54,6 +64,10 @@ var Quiz = {
 							Quiz.getQuestion();
 							console.log(xhr.responseText);
 						}, 1000);
+					}
+					else {
+
+						Quiz.finalResult();
 					}
 				}	
 				else {
@@ -63,7 +77,7 @@ var Quiz = {
 			else {
 				console.log("Läsfel! " + xhr.status);
 			}
-		};
+		}
 
 		xhr.open("POST", Quiz.response.nextURL, true);
 		xhr.setRequestHeader("content-Type", "application/json");
@@ -89,7 +103,27 @@ var Quiz = {
 		setTimeout(function() {
 			document.getElementById("questionField").innerHTML = Quiz.response.question;			
 		}, 1000);
-	}
+	},
+
+	clearAnswerField: function() {
+
+		document.getElementById("answerField").value = "";
+	},
+
+	finalResult: function() {
+
+		document.getElementById("questionField").innerHTML = "Spelet är slut!";
+
+		for (var i = 0; i < Quiz.totalGuesses.length; i += 1) {
+			
+			var resultField = document.getElementById("resultField");
+			var p = document.createElement("p");
+
+			p.innerHTML = "Fråga " + (i + 1) + " krävde " + Quiz.totalGuesses[i] + " försök.";
+			
+			resultField.appendChild(p);
+		};
+	},
 
 };
 
