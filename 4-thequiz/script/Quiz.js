@@ -23,7 +23,6 @@ var Quiz = {
 				Quiz.nextURL = question.nextURL;
 			}
 			else {
-
 				console.log("Läsfel! " + xhr.status);
 			}
 		}; 
@@ -33,7 +32,7 @@ var Quiz = {
 	},
 
 	sendAnswer: function() {
-		
+		console.log("hej");
 		var userAnswer = document.getElementById("answerField").value;
 		var xhr = new XMLHttpRequest();
 
@@ -42,12 +41,13 @@ var Quiz = {
 			if (xhr.readyState === 4) {
 
 				if (xhr.status === 200) {
-
 					var answer = JSON.parse(xhr.responseText);
+					console.log(xhr.responseText);
+					Quiz.nextURL = answer.nextURL;
+					Quiz.getQuestion();
 				}	
 				else {
-					
-					var wrongAnswer = "Fel svar! Försök igen";
+					var wrongAnswer = "Fel svar! Försök igen.";
 					document.getElementById("questionField").innerHTML = wrongAnswer;
 				}
 			}
@@ -60,7 +60,6 @@ var Quiz = {
 		xhr.setRequestHeader("content-Type", "application/json");
 
 		var answer = {
-
 			"answer": userAnswer
 		};
 
