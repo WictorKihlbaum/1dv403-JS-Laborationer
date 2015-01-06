@@ -1,0 +1,22 @@
+body 		{
+			margin: 0;
+			padding: 0;
+			background-image: url('images/banana.jpg');
+  			background-size: 100%;
+			}
+
+#taskbar	{
+			padding: 5px;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 40px;
+			background-color: #3498DB;
+			}
+
+#imgApp		{
+			width: 55px;
+			height: 40px;
+			background-image: url('images/imageIcon.png');
+			background-size: 55px 40px;
+			}
