@@ -10,6 +10,7 @@ var Quiz = {
 	init: function() {
 		Quiz.getQuestion();
 		document.getElementById("sendButton").addEventListener("click", Quiz.sendAnswer, false);
+		document.getElementById("restartButton").addEventListener("click", Quiz.restartQuiz, false);
 	},
 
 	getQuestion: function() {
@@ -24,12 +25,11 @@ var Quiz = {
 
 				document.getElementById("questionField").innerHTML = Quiz.response.question;
 				Quiz.nextURL = Quiz.response.nextURL;
-				console.log(Quiz.response);
 			}
 			else {
 				console.log("Läsfel! " + xhr.status);
 			}
-		}; 
+		}
 
 		xhr.open("GET", Quiz.nextURL, true);
 		xhr.send(null);
@@ -66,7 +66,6 @@ var Quiz = {
 						}, 1000);
 					}
 					else {
-
 						Quiz.finalResult();
 					}
 				}	
@@ -113,16 +112,21 @@ var Quiz = {
 	finalResult: function() {
 
 		document.getElementById("questionField").innerHTML = "Spelet är slut!";
+		var resultField = document.getElementById("resultField");
 
 		for (var i = 0; i < Quiz.totalGuesses.length; i += 1) {
 			
-			var resultField = document.getElementById("resultField");
+			
 			var p = document.createElement("p");
 
 			p.innerHTML = "Fråga " + (i + 1) + " krävde " + Quiz.totalGuesses[i] + " försök.";
 			
 			resultField.appendChild(p);
 		};
+	},
+
+	restartQuiz: function() {
+		location.reload();
 	},
 
 };

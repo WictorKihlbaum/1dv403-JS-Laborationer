@@ -1,13 +1,20 @@
 body 				{
 					margin: 0;
 					padding: 0;
+					background-image: url('pics/zelda.png');
+					background-repeat: no-repeat;
 					}
 
+@font-face      	{
+		        	font-family: 'triforce';
+                	src: url('font/triforce.ttf');
+		        	}
+
 #container			{
+					margin: 0 auto;
 					width: 960px;
 					height: auto;
-					margin: 0 auto;
-					background-color: #ECF0F1;
+					margin-top: 20px;
 					}
 
 #quizDiv			{
@@ -16,25 +23,58 @@ body 				{
 					display: block;
 					width: 400px;
 					height: auto;
-					background-color: #CCC;
 					}
 
 #quizDiv 
 header				{
 					margin: 0;
-					font: 18px verdana;
-					color: #3498DB;
 					text-align: center;
+					font-size: 48px;
+					font-family: 'triforce', arial;
+					color: #FFF;
+					}
+
+#questionField		{
+					font: 22px helvetica;
+					color: #FFF;
 					}
 
 #answerField 		{
-					width: 200px;
-					height: 40px;
+					width: 400px;
+					height: 100px;
 					}
 
-#resultField		{
-					margin-top: 25px; 
-					width: 200px;
-					height: 200px;
-					background-color: #FFF;
+main textarea		{
+					resize: none;
+					border: 0;
 					}
+
+#sendButton			{
+					margin: 0;
+					padding: 0;
+					width: 404px;
+					height: 50px;
+					border: 0;
+					font: 16px arial;
+					color: #FFF;
+					background-color: #3498DB;
+					}
+
+#sendButton:hover 	{
+					background-color: #2980b9;
+					}
+
+#restartButton		{
+					margin-top: 5px;
+					padding: 0;
+					width: 404px;
+					height: 30px;
+					border: 0;
+					font: 14px arial;
+					color: #FFF;
+					background-color: #D44545;
+					}
+
+#restartButton:hover	{
+						background-color: #C03F3F;
+						}
