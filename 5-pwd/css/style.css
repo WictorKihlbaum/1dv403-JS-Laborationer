@@ -19,6 +19,9 @@ body 		{
 #imgApp		{
 			width: 55px;
 			height: 40px;
-			background-image: url('images/imageIcon.png');
-			background-size: 100%;
 			}
+
+#imgApp img {
+			width: 55px;
+			height: 40px;
+			}	

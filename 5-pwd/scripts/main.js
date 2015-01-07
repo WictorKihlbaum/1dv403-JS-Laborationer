@@ -6,4 +6,6 @@ require.config({
 	}
 });
 
-require(["lib/modules/Imageapp.js"]);
+require(["lib/modules/Imageapp"], function(Imageapp) {
+	Imageapp.init();
+});
