@@ -4,26 +4,59 @@ define(function() {
 
 	var Imageapp = {
 
+		clicks: 0,
+
 		init: function() {
 			document.getElementById("imgApp").addEventListener("click", Imageapp.createElements, false);
 		},
 
 		createElements: function() {
 
-			console.log("hej");
+			Imageapp.clicks += 1;
 
-		 /* var imgAppDiv = document.createElement("div");
-				imgAppDiv.id = "imgApp";
-			var imgAppImg = document.createElement("img");
-			var imgAppStart = document.createElement("a");
-				imgAppStart.href = "";
-			var taskbar = document.getElementById("taskbar"); 
-				taskbar.appendChild(imgAppDiv);
+			if (Imageapp.clicks < 2) {
 
-			imgAppDiv.appendChild(imgAppStart);
-			imgAppStart.appendChild(imgAppImg);
-				imgAppImg.setAttribute("src", "images/appIcon.png");
-				imgAppImg.alt = "Image App Link"; */
+				var mainWindow = document.createElement("DIV");
+					mainWindow.id = "mainWindow";
+				var subWindow = document.createElement("DIV");
+					subWindow.id = "subWindow";
+
+				var closeWindowDiv = document.createElement("DIV");
+				var closeWindow = document.createElement("A");
+					closeWindow.href = "#";
+				var closeWindowImg = document.createElement("IMG");
+					closeWindowImg.id ="closeWindow";
+
+					mainWindow.appendChild(subWindow);
+					mainWindow.appendChild(closeWindowDiv);
+
+					closeWindowDiv.appendChild(closeWindow);
+					closeWindow.appendChild(closeWindowImg);
+					closeWindowImg.setAttribute("src", "images/close.png");
+					closeWindowImg.alt = "Close window";
+
+				var mainWindowIcon = document.createElement("IMG");
+					mainWindowIcon.id = "mainWindowIcon";
+					mainWindowIcon.setAttribute("src", "images/appIcon.png")
+
+				var mainWindowText = document.createElement("SPAN");
+					mainWindowText.id = "mainWindowText";
+					mainWindowText.innerHTML = "Image Application";
+
+					mainWindow.appendChild(mainWindowIcon);
+					mainWindow.appendChild(mainWindowText);
+
+				var body = document.getElementsByTagName("body")[0];
+					body.appendChild(mainWindow);
+
+				closeWindow.onclick = function(e) {
+
+					Imageapp.clicks = 0;
+					e.preventDefault();
+    				mainWindow.style.display = "none";
+				}
+
+			}
 				
 		},
 
