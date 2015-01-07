@@ -62,7 +62,6 @@ var Quiz = {
 
 						setTimeout(function() {
 							Quiz.getQuestion();
-							console.log(xhr.responseText);
 						}, 1000);
 					}
 					else {
@@ -116,10 +115,8 @@ var Quiz = {
 
 		for (var i = 0; i < Quiz.totalGuesses.length; i += 1) {
 			
-			
 			var p = document.createElement("p");
-
-			p.innerHTML = "Fråga " + (i + 1) + " krävde " + Quiz.totalGuesses[i] + " försök.";
+				p.innerHTML = "Fråga " + (i + 1) + " krävde " + Quiz.totalGuesses[i] + " försök.";
 			
 			resultField.appendChild(p);
 		};

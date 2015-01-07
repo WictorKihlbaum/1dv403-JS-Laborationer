@@ -1,27 +1,24 @@
-body 		{
-			margin: 0;
-			padding: 0;
-			background-image: url('images/banana.jpg');
-			background-repeat: no-repeat;
-			width: 100%;
-  			background-size: 100%;
-			}
+body 			{
+				margin: 0;
+				padding: 0;
+				background-image: url('images/banana.jpg');
+				background-repeat: no-repeat;
+				width: 100%;
+	  			background-size: 100%;
+				}
 
-#taskbar	{
-			padding-top: 5px;
-			position: absolute;
-			bottom: 0;
-			width: 100%;
-			height: 50px;
-			background-color: #3498DB;
-			}
+#taskbar		{
+				padding-top: 5px;
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				height: 50px;
+				background-color: #3498DB;
+				}
 
-#imgApp		{
-			width: 55px;
-			height: 40px;
-			}
-
-#imgApp img {
-			width: 55px;
-			height: 40px;
-			}	
+#imgApp			{
+				width: 55px;
+				height: 40px;
+				margin-top: 5px;
+				margin-left: 5px;
+				}
