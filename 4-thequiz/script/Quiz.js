@@ -7,12 +7,14 @@ var Quiz = {
 	totalGuesses: [],
 	guesses: 0,
 
+	// Hämtar inledande fråga.
 	init: function() {
 		Quiz.getQuestion();
 		document.getElementById("sendButton").addEventListener("click", Quiz.sendAnswer, false);
 		document.getElementById("restartButton").addEventListener("click", Quiz.restartQuiz, false);
 	},
 
+	// Anropar server och hämtar fråga vid korrekt status.
 	getQuestion: function() {
 
 		var xhr = new XMLHttpRequest();
@@ -23,6 +25,7 @@ var Quiz = {
 
 				Quiz.response = JSON.parse(xhr.responseText);
 
+				// Skickar in hämtad fråga i index, och ställer om adress för nästkommande fråga.
 				document.getElementById("questionField").innerHTML = Quiz.response.question;
 				Quiz.nextURL = Quiz.response.nextURL;
 			}
@@ -35,10 +38,12 @@ var Quiz = {
 		xhr.send(null);
 	},
 
+	// Skickar användarens svar till server.
 	sendAnswer: function() {
 
 		Quiz.guesses += 1;
 
+		// Hämtar användarens svar från textfält i index.
 		var userAnswer = document.getElementById("answerField").value;
 		var xhr = new XMLHttpRequest();
 
@@ -52,9 +57,11 @@ var Quiz = {
 
 					Quiz.response = JSON.parse(xhr.responseText);
 
+					// Sparar antal gissningar per fråga till array.
 					Quiz.totalGuesses.push(Quiz.guesses);
 					Quiz.guesses = 0;
 
+					// Kallar enbart på nästa fråga om det finns en "nextURL" i hämtat objekt.
 					if ("nextURL" in Quiz.response) {
 						
 						Quiz.nextURL = Quiz.response.nextURL;
@@ -108,11 +115,13 @@ var Quiz = {
 		document.getElementById("answerField").value = "";
 	},
 
+	// Vid avslutat spel presenteras resultatet.
 	finalResult: function() {
 
 		document.getElementById("questionField").innerHTML = "Spelet är slut!";
 		var resultField = document.getElementById("resultField");
 
+		// Skriver ut besvarade frågor och antal gissningar som krävdes för var och en av dessa.
 		for (var i = 0; i < Quiz.totalGuesses.length; i += 1) {
 			
 			var p = document.createElement("p");
@@ -122,6 +131,7 @@ var Quiz = {
 		};
 	},
 
+	// Laddar om sida.
 	restartQuiz: function() {
 		location.reload();
 	},

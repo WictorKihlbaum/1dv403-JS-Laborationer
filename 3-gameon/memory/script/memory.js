@@ -8,7 +8,9 @@ var Memory = {
 	matchedPairs: 0,
 	maxPairs: 0,
 
-	init : function() {
+	// Skapar antal brickor och hämtar slumpmässiga värden för dessa.
+	// Kallar sedan på funktioner som skapar spelplan samt fördelar brickornas värden.
+	init: function() {
 
 		var rows = 4;
 		var cols = 4;
@@ -20,7 +22,8 @@ var Memory = {
 		Memory.divideValues(randomArray);
 	},
 
-	createTable : function(rows, cols) {
+	// Skapar tabell med tillhörande element.
+	createTable: function(rows, cols) {
 
 		var memoryDiv = document.getElementById("memoryDiv");
 		var memoryTable = document.createElement("table");
@@ -51,7 +54,8 @@ var Memory = {
 		memoryDiv.appendChild(memoryTable);
 	},
 
-	divideValues : function(randomArray, rows, cols) {
+	// Fördelar värden till memoryts brickor.
+	divideValues: function(randomArray, rows, cols) {
 
 		var aValues = document.getElementsByTagName("a");
 
@@ -62,16 +66,18 @@ var Memory = {
 		}
 	},
 
-	whenClick : function(e) {
+	// Vänder upp bricka och tilldelar denna en bild utifrån tilldelat siffervärde.
+	whenClick: function(e) {
 		
 		e.preventDefault();
 		
+		// Vänder enbart upp en bricka om antalet vända är under två.
 		if (Memory.clickCounter < 2) {
 
 			var tileValue = this;
 			var rel = tileValue.rel;
 
-				
+			// Förhindrar att användaren skall kunna klicka på en redan vänd bricka.
 			if(!tileValue.hasAttribute("type", "#")) {
 				
 				Memory.clickCounter += 1;
@@ -82,18 +88,24 @@ var Memory = {
 			}
 		}
 
+		// Kallar på funktion för parjämförelse när användaren vänt upp två brickor.
 		if (Memory.pairCompare.length === 2 && Memory.clickCounter === 2) {
 
 			Memory.checkPair();
 		}
 
+		// När samtliga brickor är matchade presenteras resultatet.
 		if (Memory.matchedPairs === Memory.maxPairs) {
 
 			document.getElementById("result").innerHTML = "Grattis, du vann! Det tog " + Memory.amountOfGuesses + " gissningar";	
 		}
 	},
 
-	checkPair : function() {
+	/* Vid händelse av matchade brickor nollställs array 
+	   för tillfälligt lagrade brickor och antal gissningar */
+
+	/* Annars vänds brickorna tillbaka efter en sekund */
+	checkPair: function() {
 		
 		if (Memory.pairCompare[0].rel === Memory.pairCompare[1].rel) {					
 				
@@ -104,12 +116,12 @@ var Memory = {
 		}
 		else
 		{
-			setTimeout(function () {
+			setTimeout(function() {
 
 			for (var i = 0; i < Memory.pairCompare.length; i += 1) {		
 						
-			Memory.pairCompare[i].firstChild.src = "pics/0.png";
-			Memory.pairCompare[i].removeAttribute("type");
+				Memory.pairCompare[i].firstChild.src = "pics/0.png";
+				Memory.pairCompare[i].removeAttribute("type");
 			}
 
 			Memory.amountOfGuesses += 1;
