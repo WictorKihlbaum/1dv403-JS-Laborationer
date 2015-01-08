@@ -78,3 +78,15 @@ main textarea		{
 #restartButton:hover	{
 						background-color: #C03F3F;
 						}
+
+#resultField		{
+					margin-top: 30px;
+					width: 324px;
+					height: auto;
+					padding: 40px;
+					border-radius: 10px;
+					font: 16px helvetica;
+					color: #2ECC71;
+					text-align: center;
+					background-color: #FFF;
+					}

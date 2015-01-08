@@ -119,7 +119,12 @@ var Quiz = {
 	finalResult: function() {
 
 		document.getElementById("questionField").innerHTML = "Spelet är slut!";
-		var resultField = document.getElementById("resultField");
+
+		var main = document.getElementsByTagName("main")[0];
+		var resultField = document.createElement("div");
+			resultField.id = "resultField";
+
+		main.appendChild(resultField);
 
 		// Skriver ut besvarade frågor och antal gissningar som krävdes för var och en av dessa.
 		for (var i = 0; i < Quiz.totalGuesses.length; i += 1) {
