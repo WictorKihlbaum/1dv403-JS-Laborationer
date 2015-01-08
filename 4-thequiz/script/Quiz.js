@@ -7,14 +7,14 @@ var Quiz = {
 	totalGuesses: [],
 	guesses: 0,
 
-	// Hämtar inledande fråga.
+	// Kallar på funktion för hämtning av inledande fråga.
 	init: function() {
 		Quiz.getQuestion();
 		document.getElementById("sendButton").addEventListener("click", Quiz.sendAnswer, false);
 		document.getElementById("restartButton").addEventListener("click", Quiz.restartQuiz, false);
 	},
 
-	// Anropar server och hämtar fråga vid korrekt status.
+	// Anropar server och hämtar fråga.
 	getQuestion: function() {
 
 		var xhr = new XMLHttpRequest();
@@ -73,6 +73,8 @@ var Quiz = {
 					}
 					else {
 						Quiz.finalResult();
+						var hideSend = document.getElementById("sendButton");
+							hideSend.style.display = "none";
 					}
 				}	
 				else {

@@ -7,10 +7,10 @@ define(function() {
 		clicks: 0,
 
 		init: function() {
-			document.getElementById("imgApp").addEventListener("click", Imageapp.createElements, false);
+			document.getElementById("imgApp").addEventListener("click", Imageapp.createWindow, false);
 		},
 
-		createElements: function() {
+		createWindow: function() {
 
 			Imageapp.clicks += 1;
 
@@ -51,8 +51,8 @@ define(function() {
 
 				closeWindow.onclick = function(e) {
 
-					Imageapp.clicks = 0;
 					e.preventDefault();
+					Imageapp.clicks = 0;
     				mainWindow.style.display = "none";
 				}
 
