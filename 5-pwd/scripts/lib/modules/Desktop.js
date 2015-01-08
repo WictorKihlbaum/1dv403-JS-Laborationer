@@ -22,11 +22,17 @@ define(function() {
 			var openApp = document.createElement("A");
 				openApp.href = "#";
 
+			// Place the elements in Desktop.
 			body.appendChild(taskbar);
 			taskbar.appendChild(openApp);
 			openApp.appendChild(imgApp);
 
-			openApp.addEventListener("click", MessageBoard.sendMessage, false);
+			// Call init for Imageapp.
+			openApp.addEventListener("click", function() {
+				require(["lib/modules/Imageapp"], function(Imageapp) {
+					Imageapp.init();
+				});
+			});
 		},
 
 	}

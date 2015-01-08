@@ -4,20 +4,25 @@ define(function() {
 
 	var Imageapp = {
 
-		clicks: 0,
+		windowsOpen: 0,
+		url: "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/",
+		imageArray: [], 
 
 		init: function() {
-			document.getElementById("imgApp").addEventListener("click", Imageapp.createWindow, false);
+			Imageapp.createWindow();
 		},
 
 		createWindow: function() {
 
-			Imageapp.clicks += 1;
+			Imageapp.windowsOpen += 1;
 
-			if (Imageapp.clicks < 2) {
+			if (Imageapp.windowsOpen < 2) {
+
+				var body = document.getElementsByTagName("body")[0];
 
 				var mainWindow = document.createElement("DIV");
 					mainWindow.id = "mainWindow";
+
 				var subWindow = document.createElement("DIV");
 					subWindow.id = "subWindow";
 
@@ -26,12 +31,6 @@ define(function() {
 					closeWindow.href = "#";
 				var closeWindowImg = document.createElement("IMG");
 					closeWindowImg.id ="closeWindow";
-
-					mainWindow.appendChild(subWindow);
-					mainWindow.appendChild(closeWindowDiv);
-
-					closeWindowDiv.appendChild(closeWindow);
-					closeWindow.appendChild(closeWindowImg);
 					closeWindowImg.setAttribute("src", "images/close.png");
 					closeWindowImg.alt = "Close window";
 
@@ -43,21 +42,60 @@ define(function() {
 					mainWindowText.id = "mainWindowText";
 					mainWindowText.innerHTML = "Image Application";
 
-					mainWindow.appendChild(mainWindowIcon);
-					mainWindow.appendChild(mainWindowText);
+				// Place the elements.
+				body.appendChild(mainWindow);
 
-				var body = document.getElementsByTagName("body")[0];
-					body.appendChild(mainWindow);
+				mainWindow.appendChild(subWindow);
+				mainWindow.appendChild(closeWindowDiv);
+				mainWindow.appendChild(mainWindowIcon);
+				mainWindow.appendChild(mainWindowText);
 
-				closeWindow.onclick = function(e) {
+				closeWindowDiv.appendChild(closeWindow);
+				closeWindow.appendChild(closeWindowImg);
 
-					e.preventDefault();
-					Imageapp.clicks = 0;
-    				mainWindow.style.display = "none";
+				// Close window.
+				closeWindow.onclick = function() {
+
+					Imageapp.windowsOpen = 0;
+    				body.removeChild(mainWindow);
 				}
 
+				Imageapp.getImages();
+			}	
+		},
+
+		getImages: function() {
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function() {
+
+				if (xhr.readyState === 4 && xhr.status === 200) {
+
+					Imageapp.presentImages(JSON.parse(xhr.responseText));
+				}
+				else {
+					console.log("Läsfel! " + xhr.status);
+				}
 			}
-				
+
+		xhr.open("GET", Imageapp.url, true);
+		xhr.send(null);
+		},
+
+		presentImages: function(response) {
+			
+			var imageWindow = document.getElementById("subWindow");
+
+				for(var i = 0; i < response.length; i += 1){
+
+					console.log(response[i].thumbURL);
+
+					var image = document.createElement("IMG");
+						image.setAttribute("src", response[i].thumbURL);
+						
+					imageWindow.appendChild(image);
+				}
 		},
 
 	}
