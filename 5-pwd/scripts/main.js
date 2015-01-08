@@ -2,10 +2,11 @@
 
 require.config({
 	paths: {
+		"Desktop": "lib/modules/Desktop",
 		"Imageapp": "lib/modules/Imageapp"
 	}
 });
 
-require(["lib/modules/Imageapp"], function(Imageapp) {
-	Imageapp.init();
+require(["lib/modules/Desktop"], function(Desktop) {
+	Desktop.init();
 });
