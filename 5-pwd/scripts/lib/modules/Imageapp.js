@@ -86,15 +86,18 @@ define(function() {
 		presentImages: function(response) {
 			
 			var imageWindow = document.getElementById("subWindow");
+			
 
-				for(var i = 0; i < response.length; i += 1){
-
-					console.log(response[i].thumbURL);
+				for (var i = 0; i < response.length; i += 1) {
 
 					var image = document.createElement("IMG");
-						image.setAttribute("src", response[i].thumbURL);
+						image.setAttribute("SRC", response[i].thumbURL);
 						
-					imageWindow.appendChild(image);
+					var imageFrame = document.createElement("DIV");
+						imageFrame.className = "imageFrame";
+
+					imageWindow.appendChild(imageFrame);
+					imageFrame.appendChild(image);
 				}
 		},
 

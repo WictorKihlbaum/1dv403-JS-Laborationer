@@ -33,7 +33,7 @@ body 			{
 
 #mainWindow		{
 				position: relative;
-				width: 450px;
+				width: 400px;
 				height: 575px;
 				margin-top: 50px;
 				margin-left: 50px;
@@ -46,10 +46,24 @@ body 			{
 
 #subWindow		{
 				position: absolute;
-				width: 450px;
-				height: 500px;
+				width: 350px;
+				height: 450px;
 				margin-top: 50px;
+				padding: 25px;
 				background-color: #ECF0F1;
+				overflow-y: auto;
+				overflow-x: hidden;
+				}
+
+.imageFrame		{
+				float: left;
+				width: 75px;
+				height: 50px;
+				text-align: center;
+				margin: 10px;
+				padding: 5px;
+				border-radius: 5px;
+				background-color: #3498DB;
 				}
 
 #closeWindow	{
