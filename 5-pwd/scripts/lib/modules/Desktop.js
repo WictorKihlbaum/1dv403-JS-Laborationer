@@ -11,6 +11,9 @@ define(function() {
 		generateDesktop: function() {
 
 			var body = document.getElementsByTagName("BODY")[0];
+			var desktop = document.createElement("DIV");
+				desktop.id = "desktop";
+
 			var taskbar = document.createElement("DIV");
 				taskbar.id = "taskbar";
 
@@ -23,11 +26,12 @@ define(function() {
 				openApp.href = "#";
 
 			// Place the elements in Desktop.
-			body.appendChild(taskbar);
+			body.appendChild(desktop);
+			desktop.appendChild(taskbar);
 			taskbar.appendChild(openApp);
 			openApp.appendChild(imgApp);
 
-			// Call init for Imageapp.
+			// Call init for Imageapp when click on App.
 			openApp.addEventListener("click", function() {
 				require(["lib/modules/Imageapp"], function(Imageapp) {
 					Imageapp.init();

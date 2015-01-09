@@ -10,6 +10,7 @@ define(function() {
 
 		init: function() {
 			Imageapp.createWindow();
+			Imageapp.dragDropWindow();
 		},
 
 		createWindow: function() {
@@ -19,12 +20,19 @@ define(function() {
 			if (Imageapp.windowsOpen < 2) {
 
 				var body = document.getElementsByTagName("body")[0];
+				var desktop = document.getElementById("desktop");
 
 				var mainWindow = document.createElement("DIV");
 					mainWindow.id = "mainWindow";
 
-				var subWindow = document.createElement("DIV");
-					subWindow.id = "subWindow";
+				var topBar = document.createElement("DIV");
+					topBar.id = "topBar";
+
+				var windowContainer = document.createElement("DIV");
+					windowContainer.id = "windowContainer";
+
+				var bottomBar = document.createElement("DIV");
+					bottomBar.id = "bottomBar";
 
 				var closeWindowDiv = document.createElement("DIV");
 				var closeWindow = document.createElement("A");
@@ -43,21 +51,25 @@ define(function() {
 					mainWindowText.innerHTML = "Image Application";
 
 				// Place the elements.
-				body.appendChild(mainWindow);
+				body.appendChild(desktop);
+				desktop.appendChild(mainWindow);
 
-				mainWindow.appendChild(subWindow);
-				mainWindow.appendChild(closeWindowDiv);
-				mainWindow.appendChild(mainWindowIcon);
-				mainWindow.appendChild(mainWindowText);
+				mainWindow.appendChild(topBar);
+				mainWindow.appendChild(windowContainer);
+				mainWindow.appendChild(bottomBar);
+
+				topBar.appendChild(closeWindowDiv);
+				topBar.appendChild(mainWindowIcon);
+				topBar.appendChild(mainWindowText);
 
 				closeWindowDiv.appendChild(closeWindow);
 				closeWindow.appendChild(closeWindowImg);
 
-				// Close window.
+				// Close mainwindow when click on button.
 				closeWindow.onclick = function() {
 
 					Imageapp.windowsOpen = 0;
-    				body.removeChild(mainWindow);
+    				desktop.removeChild(mainWindow);
 				}
 
 				Imageapp.getImages();
@@ -85,20 +97,61 @@ define(function() {
 
 		presentImages: function(response) {
 			
-			var imageWindow = document.getElementById("subWindow");
+			var imageWindow = document.getElementById("windowContainer");
+			var frameWidth = 0;
+			var frameHeight = 0;
 			
-
 				for (var i = 0; i < response.length; i += 1) {
 
-					var image = document.createElement("IMG");
-						image.setAttribute("SRC", response[i].thumbURL);
-						
+					var thumbImage = document.createElement("IMG");
+						thumbImage.setAttribute("SRC", response[i].thumbURL);
+
+					if (response[i].thumbWidth > frameWidth && response[i].thumbHeight > frameHeight) {
+
+						frameWidth = response[i].thumbWidth;
+						frameHeight = response[i].thumbHeight;
+					}
+
 					var imageFrame = document.createElement("DIV");
 						imageFrame.className = "imageFrame";
+						imageFrame.style.width = frameWidth + "px";
+						imageFrame.style.height = frameHeight + "px";
 
 					imageWindow.appendChild(imageFrame);
-					imageFrame.appendChild(image);
+					imageFrame.appendChild(thumbImage);
 				}
+		},
+
+		dragDropWindow: function() {		
+
+			var offX;
+			var offY;
+			var div = document.getElementById("mainWindow");
+			var handle = document.getElementById("topBar");
+
+			handle.addEventListener("mousedown", mouseDown, false);
+			window.addEventListener("mouseup", mouseUp, false);
+
+			function mouseUp() {
+
+				window.removeEventListener("mousemove", divMove, true);
+			}
+
+			function mouseDown(e) {
+
+				offY = e.clientY - parseInt(div.offsetTop);
+				offX = e.clientX - parseInt(div.offsetLeft);
+
+				window.addEventListener("mousemove", divMove, true);
+			}
+
+			function divMove(e) {
+
+				e.preventDefault();
+				div.style.position = "absolute";
+				div.style.top = (e.clientY - offY) + "px";
+				div.style.left = (e.clientX - offX) + "px";
+			}
 		},
 
 	}
