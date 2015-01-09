@@ -50,7 +50,7 @@ define(function() {
 					mainWindowText.id = "mainWindowText";
 					mainWindowText.innerHTML = "Image Application";
 
-				// Place the elements.
+				// Place elements.
 				body.appendChild(desktop);
 				desktop.appendChild(mainWindow);
 
@@ -65,7 +65,7 @@ define(function() {
 				closeWindowDiv.appendChild(closeWindow);
 				closeWindow.appendChild(closeWindowImg);
 
-				// Close mainwindow when click on button.
+				// Close mainwindow.
 				closeWindow.onclick = function() {
 
 					Imageapp.windowsOpen = 0;
@@ -116,10 +116,26 @@ define(function() {
 						imageFrame.className = "imageFrame";
 						imageFrame.style.width = frameWidth + "px";
 						imageFrame.style.height = frameHeight + "px";
+					
+					var imageFrameLink = document.createElement("A");
+						imageFrameLink.href = "#";
+						imageFrameLink.addEventListener("click", Imageapp.changeWallpaper, false);
 
-					imageWindow.appendChild(imageFrame);
+					imageWindow.appendChild(imageFrameLink);
+					imageFrameLink.appendChild(imageFrame);
 					imageFrame.appendChild(thumbImage);
 				}
+		},
+
+		changeWallpaper: function() {
+			
+			console.log(this);
+			var lol = this.firstChild.firstChild.src;
+				lol = lol.replace("/thumbs", "");
+
+			var wallpaper = document.getElementById("desktop");
+				wallpaper.style.backgroundImage = "url('"+lol+"')";
+
 		},
 
 		dragDropWindow: function() {		
@@ -127,9 +143,11 @@ define(function() {
 			var offX;
 			var offY;
 			var div = document.getElementById("mainWindow");
-			var handle = document.getElementById("topBar");
+			var handleTopbar = document.getElementById("topBar");
+			var handleBottombar = document.getElementById("bottomBar");
 
-			handle.addEventListener("mousedown", mouseDown, false);
+			handleTopbar.addEventListener("mousedown", mouseDown, false);
+			handleBottombar.addEventListener("mousedown", mouseDown, false);
 			window.addEventListener("mouseup", mouseUp, false);
 
 			function mouseUp() {

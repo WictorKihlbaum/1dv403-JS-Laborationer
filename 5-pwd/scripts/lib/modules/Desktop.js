@@ -25,13 +25,13 @@ define(function() {
 			var openApp = document.createElement("A");
 				openApp.href = "#";
 
-			// Place the elements in Desktop.
+			// Place elements in Desktop.
 			body.appendChild(desktop);
 			desktop.appendChild(taskbar);
 			taskbar.appendChild(openApp);
 			openApp.appendChild(imgApp);
 
-			// Call init for Imageapp when click on App.
+			// Call init for Imageapp.
 			openApp.addEventListener("click", function() {
 				require(["lib/modules/Imageapp"], function(Imageapp) {
 					Imageapp.init();
