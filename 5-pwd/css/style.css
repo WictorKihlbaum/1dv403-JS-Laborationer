@@ -67,6 +67,24 @@ body 				{
 					overflow-x: hidden;
 					}
 
+#loadingDiv			{
+					margin: 0 auto;
+					width: 200px;
+					height: auto;
+					margin-top: 50px;
+					text-align: center;
+					}
+
+#loadingGif			{
+					width: 200px;
+					height: 200px;
+					}
+
+#loadingText		{
+					font: 16px helvetica;
+					color: #777;
+					}
+
 #bottomBar			{
 					width: 400px;
 					height: 25px;

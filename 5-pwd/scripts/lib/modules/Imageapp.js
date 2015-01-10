@@ -44,7 +44,7 @@ define(function() {
 
 				var mainWindowIcon = document.createElement("IMG");
 					mainWindowIcon.id = "mainWindowIcon";
-					mainWindowIcon.setAttribute("src", "images/appIcon.png")
+					mainWindowIcon.setAttribute("SRC", "images/appIcon.png");
 
 				var mainWindowText = document.createElement("SPAN");
 					mainWindowText.id = "mainWindowText";
@@ -78,12 +78,30 @@ define(function() {
 
 		getImages: function() {
 
+			var windowContainer = document.getElementById("windowContainer");
+
+			var loadingDiv = document.createElement("DIV");
+				loadingDiv.id = "loadingDiv";
+
+			var loadingGif = document.createElement("IMG");
+				loadingGif.setAttribute("SRC", "images/loading.gif");
+				loadingGif.id = "loadingGif";
+
+			var loadingText = document.createElement("SPAN");
+				loadingText.id = "loadingText";
+				loadingText.innerHTML = "Loading SWAG...";
+
+				windowContainer.appendChild(loadingDiv);
+				loadingDiv.appendChild(loadingGif);
+				loadingDiv.appendChild(loadingText);
+
 			var xhr = new XMLHttpRequest();
 
 			xhr.onreadystatechange = function() {
 
 				if (xhr.readyState === 4 && xhr.status === 200) {
 
+					windowContainer.removeChild(loadingDiv);
 					Imageapp.presentImages(JSON.parse(xhr.responseText));
 				}
 				else {
@@ -128,14 +146,14 @@ define(function() {
 		},
 
 		changeWallpaper: function() {
-			
-			console.log(this);
-			var lol = this.firstChild.firstChild.src;
-				lol = lol.replace("/thumbs", "");
+
+			var changeImg = this.firstChild.firstChild.src;
+				changeImg = changeImg.replace("/thumbs", "");
 
 			var wallpaper = document.getElementById("desktop");
-				wallpaper.style.backgroundImage = "url('"+lol+"')";
-
+				wallpaper.style.backgroundImage = "url('" + changeImg + "')";
+				wallpaper.style.backgroundSize = "auto";
+				wallpaper.style.backgroundRepeat = "repeat";
 		},
 
 		dragDropWindow: function() {		
