@@ -89,7 +89,7 @@ define(function() {
 
 			var loadingText = document.createElement("SPAN");
 				loadingText.id = "loadingText";
-				loadingText.innerHTML = "Loading SWAG...";
+				loadingText.innerHTML = "Loading...";
 
 				windowContainer.appendChild(loadingDiv);
 				loadingDiv.appendChild(loadingGif);
@@ -160,7 +160,7 @@ define(function() {
 
 			var offX;
 			var offY;
-			var div = document.getElementById("mainWindow");
+			var mainWindow = document.getElementById("mainWindow");
 			var handleTopbar = document.getElementById("topBar");
 			var handleBottombar = document.getElementById("bottomBar");
 
@@ -170,23 +170,23 @@ define(function() {
 
 			function mouseUp() {
 
-				window.removeEventListener("mousemove", divMove, true);
+				window.removeEventListener("mousemove", windowMove, true);
 			}
 
 			function mouseDown(e) {
 
-				offY = e.clientY - parseInt(div.offsetTop);
-				offX = e.clientX - parseInt(div.offsetLeft);
+				offY = e.clientY - parseInt(mainWindow.offsetTop);
+				offX = e.clientX - parseInt(mainWindow.offsetLeft);
 
-				window.addEventListener("mousemove", divMove, true);
+				window.addEventListener("mousemove", windowMove, true);
 			}
 
-			function divMove(e) {
+			function windowMove(e) {
 
 				e.preventDefault();
-				div.style.position = "absolute";
-				div.style.top = (e.clientY - offY) + "px";
-				div.style.left = (e.clientX - offX) + "px";
+				mainWindow.style.position = "absolute";
+				mainWindow.style.top = (e.clientY - offY) + "px";
+				mainWindow.style.left = (e.clientX - offX) + "px";
 			}
 		},
 
