@@ -1,7 +1,7 @@
 body			{
 				margin: 0;
 				padding: 0;
-				background-image: url("pics/zelda2.jpg");
+				background-image: url("pics/zelda.jpg");
 				background-repeat: no-repeat;
 				}
 
@@ -39,8 +39,9 @@ header h1		{
 #memoryDiv 
 table			{
 				margin: 0 auto;
-				border: 1px solid;
-				background-color: #FFF;
+				padding: 25px;
+				background-image: url("pics/pergament.png");
+				background-size: 100% 100%;
 				}
 
 #memoryDiv 
