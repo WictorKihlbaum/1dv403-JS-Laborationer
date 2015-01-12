@@ -69,15 +69,15 @@ body 				{
 
 #loadingDiv			{
 					margin: 0 auto;
-					width: 200px;
+					margin-top: 100px;
+					width: 80px;
 					height: auto;
-					margin-top: 50px;
 					text-align: center;
 					}
 
 #loadingGif			{
-					width: 200px;
-					height: 200px;
+					width: 80px;
+					height: 80px;
 					}
 
 #loadingText		{
@@ -101,14 +101,6 @@ body 				{
 					background-color: #7EC5F5;
 					}
 
-#closeWindow		{
-					position: absolute;
-					top: 3px;
-					right: 3px;
-					width: 25px;
-					height: 25px;
-					}
-
 #mainWindowIcon 	{
 					position: absolute;
 					top: 3px;
@@ -123,4 +115,12 @@ body 				{
 					left: 30px;
 					font: 14px helvetica;
 					color: #FFF;
+					}
+
+#closeWindow		{
+					position: absolute;
+					top: 3px;
+					right: 3px;
+					width: 25px;
+					height: 25px;
 					}

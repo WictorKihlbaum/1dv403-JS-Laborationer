@@ -50,7 +50,7 @@ define(function() {
 					mainWindowText.id = "mainWindowText";
 					mainWindowText.innerHTML = "Image Application";
 
-				// Place elements.
+				// Place the elements.
 				body.appendChild(desktop);
 				desktop.appendChild(mainWindow);
 
@@ -65,7 +65,7 @@ define(function() {
 				closeWindowDiv.appendChild(closeWindow);
 				closeWindow.appendChild(closeWindowImg);
 
-				// Close mainwindow.
+				// Close window.
 				closeWindow.onclick = function() {
 
 					Imageapp.windowsOpen = 0;
@@ -78,6 +78,7 @@ define(function() {
 
 		getImages: function() {
 
+			// Create and place loading screen.
 			var windowContainer = document.getElementById("windowContainer");
 
 			var loadingDiv = document.createElement("DIV");
@@ -87,9 +88,9 @@ define(function() {
 				loadingGif.setAttribute("SRC", "images/loading.gif");
 				loadingGif.id = "loadingGif";
 
-			var loadingText = document.createElement("SPAN");
+			var loadingText = document.createElement("P");
 				loadingText.id = "loadingText";
-				loadingText.innerHTML = "Loading...";
+				loadingText.innerHTML = "Loading";
 
 				windowContainer.appendChild(loadingDiv);
 				loadingDiv.appendChild(loadingGif);
@@ -121,24 +122,29 @@ define(function() {
 			
 				for (var i = 0; i < response.length; i += 1) {
 
+					// Creates an image for each thumbimage and sets the correct URL.
 					var thumbImage = document.createElement("IMG");
 						thumbImage.setAttribute("SRC", response[i].thumbURL);
 
+					// Calculate width and height for the frames.
 					if (response[i].thumbWidth > frameWidth && response[i].thumbHeight > frameHeight) {
 
 						frameWidth = response[i].thumbWidth;
 						frameHeight = response[i].thumbHeight;
 					}
 
+					// Creates a frame for each thumbimage.
 					var imageFrame = document.createElement("DIV");
 						imageFrame.className = "imageFrame";
 						imageFrame.style.width = frameWidth + "px";
 						imageFrame.style.height = frameHeight + "px";
 					
+					// Makes the frames clickable.
 					var imageFrameLink = document.createElement("A");
 						imageFrameLink.href = "#";
 						imageFrameLink.addEventListener("click", Imageapp.changeWallpaper, false);
 
+					// Place the elements.
 					imageWindow.appendChild(imageFrameLink);
 					imageFrameLink.appendChild(imageFrame);
 					imageFrame.appendChild(thumbImage);
@@ -147,9 +153,11 @@ define(function() {
 
 		changeWallpaper: function() {
 
+			// Gets the URL for the thumbimage and removes the "/thumbs" from it.
 			var changeImg = this.firstChild.firstChild.src;
 				changeImg = changeImg.replace("/thumbs", "");
 
+			// Sets the chosen image as background.
 			var wallpaper = document.getElementById("desktop");
 				wallpaper.style.backgroundImage = "url('" + changeImg + "')";
 				wallpaper.style.backgroundSize = "auto";
@@ -164,6 +172,7 @@ define(function() {
 			var handleTopbar = document.getElementById("topBar");
 			var handleBottombar = document.getElementById("bottomBar");
 
+			// Makes it only possible to grab the windows topbar or bottombar.
 			handleTopbar.addEventListener("mousedown", mouseDown, false);
 			handleBottombar.addEventListener("mousedown", mouseDown, false);
 			window.addEventListener("mouseup", mouseUp, false);
@@ -183,10 +192,26 @@ define(function() {
 
 			function windowMove(e) {
 
+				// Sets the position of the window.
 				e.preventDefault();
 				mainWindow.style.position = "absolute";
 				mainWindow.style.top = (e.clientY - offY) + "px";
 				mainWindow.style.left = (e.clientX - offX) + "px";
+
+				// Limits the draggable area.
+				if (parseInt(mainWindow.offsetTop) < 0) {
+					mainWindow.style.top = 0 + "px";
+				}
+				else if (parseInt(mainWindow.offsetTop) > 225) {
+					mainWindow.style.top = 225 + "px";
+				}
+
+				if (parseInt(mainWindow.offsetLeft) < 0) {
+					mainWindow.style.left = 0 + "px";
+				}
+				else if (parseInt(mainWindow.offsetLeft) > 880) {
+					mainWindow.style.left = 880 + "px";
+				}
 			}
 		},
 

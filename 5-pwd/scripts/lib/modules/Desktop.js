@@ -25,7 +25,7 @@ define(function() {
 			var openApp = document.createElement("A");
 				openApp.href = "#";
 
-			// Place elements in Desktop.
+			// Place the elements in Desktop.
 			body.appendChild(desktop);
 			desktop.appendChild(taskbar);
 			taskbar.appendChild(openApp);
