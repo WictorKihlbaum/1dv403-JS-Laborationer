@@ -101,6 +101,18 @@ body 				{
 					background-color: #7EC5F5;
 					}
 
+.imageFrame:before	{
+					content: ' ';
+					display: inline-block;
+					vertical-align: middle;
+					height: 100%;
+					}
+
+.imageFrame img 	{
+					display: inline-block;
+					vertical-align: middle;
+					}
+
 #mainWindowIcon 	{
 					position: absolute;
 					top: 3px;

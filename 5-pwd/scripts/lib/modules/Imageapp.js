@@ -122,16 +122,21 @@ define(function() {
 			
 				for (var i = 0; i < response.length; i += 1) {
 
+					// Calculate width and height for the frames.
+						if (response[i].thumbWidth > frameWidth && response[i].thumbHeight > frameHeight) {
+
+							frameWidth = response[i].thumbWidth;
+							frameHeight = response[i].thumbHeight;
+						}
+				}
+
+				for (var i = 0; i < response.length; i += 1) {
+
 					// Creates an image for each thumbimage and sets the correct URL.
 					var thumbImage = document.createElement("IMG");
 						thumbImage.setAttribute("SRC", response[i].thumbURL);
 
-					// Calculate width and height for the frames.
-					if (response[i].thumbWidth > frameWidth && response[i].thumbHeight > frameHeight) {
-
-						frameWidth = response[i].thumbWidth;
-						frameHeight = response[i].thumbHeight;
-					}
+					
 
 					// Creates a frame for each thumbimage.
 					var imageFrame = document.createElement("DIV");
