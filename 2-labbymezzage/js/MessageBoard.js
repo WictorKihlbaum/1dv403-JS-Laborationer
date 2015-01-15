@@ -4,11 +4,11 @@ var MessageBoard = {
 
 	messages: [],
 
-	init:function()	{
+	init: function() {
 
-		// Hämtar värde från knappen i index och gör den klickbar.
+		// Hämtar id från knappen i index och kallar på 'sendMessage' vid knapptryck.
 		var messageButton = document.getElementById("messageButton");
-		messageButton.addEventListener("click", MessageBoard.sendMessage, false);
+			messageButton.addEventListener("click", MessageBoard.sendMessage, false);
 		var userInput = document.getElementById("textMessage");
 
 		// Gör möjligt att skicka meddelande med "enter-knappen", och radbyte med "shift + enter".
@@ -29,7 +29,7 @@ var MessageBoard = {
 		// Skapar nytt meddelande och skickar med inmatat värde samt tid.
 		var userMessage = new Message(userInput.value, new Date());
 
-		// Det går endast att skicka om meddelanderutan är tom.
+		// Det går endast att skicka om meddelanderutan inte är tom.
 		if (userInput.value != "")
 			{
 				MessageBoard.messages.push(userMessage);
